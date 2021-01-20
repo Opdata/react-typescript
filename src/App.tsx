@@ -1,20 +1,11 @@
 import Label from './Label';
 import TodoItem from './TodoItem';
-import { useState } from 'react';
+import { Item, TodoList } from './Types';
+import { ReactElement, useState } from 'react';
 
-interface Test {
-  id: number;
-  text: string;
-  state: boolean;
-}
-
-function App() {
-  const [TodoList, setTodoList] = useState([]);
-  const [item, setItem] = useState({
-    id: 0,
-    text: '',
-    state: false,
-  });
+function App(): ReactElement {
+  const [TodoList, setTodoList] = useState<TodoList>([]);
+  const [item, setItem] = useState<Item>({});
 
   return (
     <section>
@@ -25,8 +16,8 @@ function App() {
         TodoList={TodoList}
         setTodoList={setTodoList}
       />
-      {TodoList.map((value: Test, index: number) => (
-        <TodoItem key={index} value={value} />
+      {TodoList.map((value: Item, index: number) => (
+        <TodoItem key={index} value={value} setTodoList={setTodoList} />
       ))}
     </section>
   );
