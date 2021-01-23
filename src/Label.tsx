@@ -12,19 +12,20 @@ const Label = ({
   TodoList: TodoList;
   setTodoList: React.Dispatch<React.SetStateAction<TodoList>>;
 }): ReactElement => {
-  const [text, setText] = useState('');
-  const [number, setNumber] = useState(0);
+  const [text, setText] = useState<string>('');
+  const [itemnumber, setitemNumber] = useState<number>(0);
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.currentTarget;
     setText(value);
   };
 
   const onSubmit = (e: React.FormEvent) => {
-    if (text !== '') {
-      setItem({ id: number, text: text });
-      setNumber(number + 1);
-      setTodoList(TodoList.concat(item));
-    }
+    setItem(() => ({
+      id: itemnumber,
+      text: text,
+    }));
+    setitemNumber((prev: number) => prev + 1);
+    setTodoList(TodoList.concat(item));
     e.preventDefault();
   };
 
