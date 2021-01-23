@@ -21,7 +21,7 @@ const Label = ({
 
   const onSubmit = (e: React.FormEvent) => {
     if (text !== '') {
-      setItem({ id: number, text: text, state: false });
+      setItem({ id: number, text: text });
       setNumber(number + 1);
       setTodoList(TodoList.concat(item));
     }

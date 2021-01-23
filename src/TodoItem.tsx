@@ -1,29 +1,28 @@
-import { ReactElement } from 'react';
-import { Item, TodoList } from './Types';
+import { useState, ReactElement, ChangeEvent } from 'react';
+import { Item } from './Types';
 
-const TodoItem = ({
-  value,
-  setTodoList,
-}: {
-  value: Item;
-  setTodoList: React.Dispatch<React.SetStateAction<TodoList>>; // 체크박스에 사용
-}): ReactElement => {
+const TodoItem = ({ value }: { value: Item }): ReactElement => {
+  const [check, setCheck] = useState<boolean>(false);
+
+  const checkHandler = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    // console.log(target.checked);
+    // setItem(!value);
+    setCheck(target.checked);
+  };
+
   const onRemove = () => {
     //
   };
 
   return (
-    <li>
-      {/* 체크밧스 추가 예정 */}
-      <b
-        style={
-          value.state
-            ? { textDecoration: 'line-through' }
-            : { textDecoration: 'none' }
-        }
-      >
-        {value.text}
-      </b>
+    <li
+      style={{
+        listStyle: 'none',
+        textDecoration: check ? 'line-through' : 'none',
+      }}
+    >
+      <input type="checkbox" checked={check} onChange={checkHandler}></input>
+      <b>{value.text}</b>
       <button style={{ marginLeft: '10px' }} onClick={onRemove}>
         삭제
       </button>

@@ -17,7 +17,7 @@ function App(): ReactElement {
         setTodoList={setTodoList}
       />
       {TodoList.map((value: Item, index: number) => (
-        <TodoItem key={index} value={value} setTodoList={setTodoList} />
+        <TodoItem key={index} value={value} />
       ))}
     </section>
   );
