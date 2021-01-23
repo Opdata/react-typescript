@@ -1,17 +1,28 @@
 import { useState, ReactElement, ChangeEvent } from 'react';
-import { Item } from './Types';
+import { Item, TodoList } from './Types';
 
-const TodoItem = ({ value }: { value: Item }): ReactElement => {
+const TodoItem = ({
+  index,
+  value,
+  array,
+  setTodoList,
+}: {
+  index: number;
+  value: Item;
+  array: Item[];
+  setTodoList: React.Dispatch<React.SetStateAction<TodoList>>;
+}): ReactElement => {
   const [check, setCheck] = useState<boolean>(false);
 
   const checkHandler = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    // console.log(target.checked);
-    // setItem(!value);
     setCheck(target.checked);
   };
 
   const onRemove = () => {
-    //
+    const newArray: Item[] = [];
+    const copy = newArray.concat(array);
+    copy.splice(index, 1);
+    setTodoList(copy);
   };
 
   return (
