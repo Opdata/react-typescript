@@ -5,17 +5,11 @@ import { ReactElement, useState } from 'react';
 
 function App(): ReactElement {
   const [TodoList, setTodoList] = useState<TodoList>([]);
-  const [item, setItem] = useState<Item>({});
 
   return (
     <section>
       <h1>Todo List</h1>
-      <Label
-        item={item}
-        setItem={setItem}
-        TodoList={TodoList}
-        setTodoList={setTodoList}
-      />
+      <Label TodoList={TodoList} setTodoList={setTodoList} />
       {TodoList.map((value: Item, index: number, array: Item[]) => (
         <TodoItem
           key={index}
@@ -25,6 +19,7 @@ function App(): ReactElement {
           setTodoList={setTodoList}
         />
       ))}
+      {console.log(TodoList)}
     </section>
   );
 }
